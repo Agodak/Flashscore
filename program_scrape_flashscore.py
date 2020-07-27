@@ -41,8 +41,6 @@ else:
 
 i=0
 
-file=open('meciuri_salvate.txt','w')
-
 for meci in meciuri:
     browser.implicitly_wait(10)
     # actions = ActionChains(browser)
@@ -77,9 +75,10 @@ for meci in meciuri:
         meciuri_de_salvat[i][casa.find_element_by_class_name('elink').get_attribute('title')]=casa.text.split()
     tab_nou.quit()
     # browser.switch_to_window(browser.window_handles[0])
-    file.write(json.dumps(meciuri_de_salvat[i]))
     print('am facut '+str(i)+' meciuri')
     time.sleep(1)
     i += 1
 
+file=open('meciuri_salvate.txt','w')
+file.write(json.dumps(meciuri_de_salvat))
 file.close()
