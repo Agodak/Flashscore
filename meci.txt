@@ -1,1 +1,0 @@
-{"home_team": "Manchester City", "away_team": "Leicester", "result": ["1", "0"], "fixture": "37", "date_time": ["06.05.2019", "22:00"], "Unibet": ["1.17", "9.40", "15.50"], "Betfair": ["1.17", "10.00", "16.00"], "NetBet": ["1.16", "8.75", "15.00"], "Betano": ["1.17", "8.00", "16.75"], "Fortuna.ro": ["1.20", "8.00", "14.00"], "Winmasters.ro": ["1.16", "8.75", "14.75"]}
