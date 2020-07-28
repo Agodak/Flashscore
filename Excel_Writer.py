@@ -14,7 +14,7 @@ def excel_2015_2016(file):
     data = json.load(f)
     round, date, home, result, away, unibet, betfair, winmasters, betano, fortuna, netbet = ([] for i in range(11))
     headers = ["Date", "Round", "Home", "Result", "Away"] + ["1", "X", "2"] * 4
-    case = ["Unibet", "Betfair", "NetBet", "Fortuna"]
+    case = ["Unibet", "Fortuna", "Betfair", "NetBet"]
 
     for meci in data:
         # print(meci["Winmasters.ro"])
@@ -24,23 +24,34 @@ def excel_2015_2016(file):
         home.append(meci["home_team"])
         result.append(meci["result"])
         away.append(meci["away_team"])
-
-        unibet.append(meci.get("Unibet"))
-        fortuna.append(meci.get("Fortuna.ro"))
-        betfair.append(meci.get("Betfair"))
+        try:
+            unibet.append(meci["Unibet"])
+        except KeyError:
+            unibet.append([" ", " ", " "])
+        try:
+            fortuna.append(meci["Fortuna.ro"])
+        except KeyError:
+            fortuna.append([" ", " ", " "])
+        try:
+            betfair.append(meci["Betfair"])
+        except KeyError:
+            betfair.append([" ", " ", " "])
         # pt sezonul 2019-2020 nu exista netbet, deci trebuie modificat de la sezon la sezon
-        netbet.append(meci.get("NetBet"))
+        try:
+            netbet.append(meci["NetBet"])
+        except KeyError:
+            netbet.appent([" ", " ", " "])
         # betano.append(meci["Betano"])
         # winmasters.append(meci["Winmasters.ro"])
         # for key, value in meci.items():
         #     print(key, value)
     print(round, date, unibet, betfair, netbet, betano, fortuna, winmasters)
-    print("Unibet: " + str(unibet))
-    print("netbet: " + str(netbet))
-    print("betano: " + str(betano))
-    print("fortuna: " + str(fortuna))
-    print("betfair: " + str(betfair))
-    print("winmasters: " + str(winmasters))
+    print(str(len(unibet)) + " Unibet: " + str(unibet))
+    print(str(len(netbet)) + " netbet: " + str(netbet))
+    print(str(len(betano)) + " betano: " + str(betano))
+    print(str(len(fortuna)) + " fortuna: " + str(fortuna))
+    print(str(len(betfair)) + " betfair: " + str(betfair))
+    print(str(len(winmasters)) + " winmasters: " + str(winmasters))
 
     workbook = xlsxwriter.Workbook(file[:-3] + 'xlsx')
     worksheet = workbook.add_worksheet()
@@ -79,13 +90,11 @@ def excel_2015_2016(file):
             worksheet.write(row + i, 5 + j, unibet[i][j], middle)
             #print(i, j, unibet[i][j])
 # astea trebuie puse in ordinea in care sunt colectate din site, altfel da eroare
-            #print(i, j, fortuna[i][j])
-            try:
-                worksheet.write(row + i, 8 + j, fortuna[i][j], middle)
-                worksheet.write(row + i, 11 + j, betfair[i][j], middle)
-                worksheet.write(row + i, 14 + j, netbet[i][j], middle)
-            except TypeError:
-                pass
+            print(i, j, fortuna[i][j])
+            worksheet.write(row + i, 8 + j, fortuna[i][j], middle)
+            worksheet.write(row + i, 11 + j, betfair[i][j], middle)
+            worksheet.write(row + i, 14 + j, netbet[i][j], middle)
+
             #worksheet.write(row + i, 14 + j, betano[i][j], middle)
             #worksheet.write(row + i, 20 + j, winmasters[i][j], middle)
     workbook.close()
