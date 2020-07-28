@@ -18,7 +18,7 @@ while True:
         browser.execute_script("window.scrollTo(0,document.body.scrollHeight)")
         print('am facut '+str(j)+' click-uri')
         j+=1
-        time.sleep(3.5)
+        time.sleep(5)
     except :
         break
 
