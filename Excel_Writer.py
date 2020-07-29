@@ -557,16 +557,18 @@ def excel_for_all(file):
             k_step += 3
 
     workbook.close()
-    shutil.move(os.path.join("C://Users//Matei//Documents//GitHub//Flashscore//text files", file[:-3] + 'xlsx'),
+    shutil.move(os.path.join("C://Users//Matei//Documents//GitHub//Flashscore//text files_corecte", file[:-3] + 'xlsx'),
                 os.path.join("C://Users//Matei//Documents//GitHub//Flashscore//excel files", file[:-3] + 'xlsx'))
     # shutil.move(os.path.join("C://Users//Matei//Documents//GitHub//Flashscore//text files", file[:-4] + '_test.xlsx'),
     #             os.path.join("C://Users//Matei//Documents//GitHub//Flashscore//excel files", file[:-4] + '_test.xlsx'))
-os.chdir(os.path.join("C://Users//Matei//Documents//GitHub//Flashscore", "text files"))
+os.chdir(os.path.join("C://Users//Matei//Documents//GitHub//Flashscore", "text files_corecte"))
 print(os.getcwd())
 #file = "meciuri_salvate_19-20.txt"
 #file = "meciuri_salvate_corect_18-19.txt"
-file = "meciuri_salvate_17-18.txt"
+#file = "meciuri_salvate_17-18.txt"
 #file = "meciuri_salvate_16-17.txt"
 #file = "meciuri_salvate_corect_18-19.txt"
 #excel_2018_2019(file)
+#file = "meciuri_salvate_18-19(2).txt"
+file = "meciuri_salvate_19-20.txt"
 excel_for_all(file)
