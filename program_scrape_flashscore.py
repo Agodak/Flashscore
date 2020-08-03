@@ -5,8 +5,12 @@ import json
 options=webdriver.ChromeOptions()
 options.add_argument("--headless")
 
-browser=webdriver.Chrome()
-browser.get('https://www.flashscore.ro/fotbal/anglia/premier-league-2018-2019/rezultate/')
+path_to_extensions = r'C:\Users\Matei\Desktop\4.18.0_0'
+options.add_argument('load-extension=' + path_to_extensions)
+
+browser=webdriver.Chrome(chrome_options=options)
+browser.create_options()
+browser.get('https://www.flashscore.ro/fotbal/anglia/premier-league-2013-2014/rezultate/')
 buton=browser.find_element_by_class_name('event__more')
 browser.execute_script("window.scrollTo(0,document.body.scrollHeight)")
 j=1
@@ -105,6 +109,6 @@ for meci in meciuri:
         print('am ratat meciul: '+str(len(meciuri_de_salvat)))
         continue
 
-file=open('meciuri_salvate_18-19(2).txt','w')
+file=open('meciuri_salvate_13-14.txt','w')
 file.write(json.dumps(meciuri_de_salvat))
 file.close()
