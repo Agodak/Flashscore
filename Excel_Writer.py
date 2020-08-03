@@ -526,9 +526,11 @@ def excel_for_all(file):
     middle.set_align('center')
     bold.set_align('center')
     worksheet.set_column('A:A', max_length(date), middle)
-    worksheet.set_column('C:C', max_length(home))
+    #worksheet.set_column(2,2, max_length(home))
+    print(max_length(home))
+    print(max_length(away))
     worksheet.set_column('E:E', max_length(away))
-    worksheet.set_column(5, len(case_pariuri), max_length(cote_dict[case_pariuri[0]]) + 3)
+    worksheet.set_column(6, len(case_pariuri), max_length(cote_dict[case_pariuri[0]]) + 3)
 
     row = 1
     column = 0
@@ -555,6 +557,7 @@ def excel_for_all(file):
             for j in range(3):
                 worksheet.write(row + i, k_step + j, cote_dict[case_pariuri[k]][i][j], middle)
             k_step += 3
+    worksheet.set_column(2, 2, max_length(home))
 
     workbook.close()
     shutil.move(os.path.join("C://Users//Matei//Documents//GitHub//Flashscore//text files_corecte", file[:-3] + 'xlsx'),
@@ -570,5 +573,7 @@ print(os.getcwd())
 #file = "meciuri_salvate_corect_18-19.txt"
 #excel_2018_2019(file)
 #file = "meciuri_salvate_18-19(2).txt"
-file = "meciuri_salvate_19-20.txt"
+#file = "meciuri_salvate_19-20.txt"
+file = "meciuri_salvate_14-15.txt"
+
 excel_for_all(file)
