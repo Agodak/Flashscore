@@ -4,18 +4,18 @@ import matplotlib.pyplot as plt
 import random
 
 #pariez pe fiecare meci, pe cota cea mai mica
-lista_salvari=['meciuri_salvate_{}-{}.txt'.format(i,i+1) for i in range(11,20)]
-for j in range(9):
+lista_salvari=['meciuri_bundesliga_{}-{}.txt'.format(i,i+1) for i in range(10,20)]
+for j in range(10):
     file=open('text files_corecte/'+lista_salvari[j],'r')
     l_meciuri=json.load(file)
     wins=0
     rezultat=0
-    suma_init=3800
+    suma_init=3400
     suma_partiala=suma_init
     money=[]
     money.append(suma_init)
     l_meciuri_random=[]
-    for i in range(1,39):
+    for i in range(1,35):
         l_temp=[]
         for meci in l_meciuri:
             if int(meci['fixture'])==i:
@@ -42,13 +42,13 @@ for j in range(9):
         text='Profit: '+ str(round(-(suma_init-money[-1])/suma_init*100,2))+'%'
     plt.figure(figsize=(15,6))
     plt.plot(money)
-    plt.title('PL '+str(j+11)+'/'+str(j+12) +'. Maximal odd bet on one random match per fixture')
+    plt.title('Bundesliga '+str(j+10)+'/'+str(j+11) +'. Maximal odd bet on one random match per fixture')
     plt.xlabel('Number of matches')
     plt.ylabel('Amount of money')
 
     plt.text(0.8,0.8,'Number of winning bets: '+str(wins) +' out of '+str(38)+'\n'+text,
              horizontalalignment='center',verticalalignment='center',transform=plt.gcf().transFigure)
-    plt.xticks(range(0,39,1))
+    plt.xticks(range(0,35,1))
     plt.grid(True)
-    plt.savefig('plots_pl/Plot_pl_'+str(j+11)+'-'+str(j+12)+'_maximal_odd_rand_match.png')
+    plt.savefig('plots_bundesliga/maximal_odd_random_match/Plot_bundesliga_'+str(j+10)+'-'+str(j+11)+'_maximal_odd_rand_match.png')
     file.close()

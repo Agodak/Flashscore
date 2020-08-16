@@ -2,13 +2,13 @@ import json
 import matplotlib.pyplot as plt
 
 #pariez pe fiecare meci, pe cota cea mai mica
-lista_salvari=['meciuri_salvate_{}-{}.txt'.format(i,i+1) for i in range(11,20)]
-for j in range(9):
+lista_salvari=['meciuri_bundesliga_{}-{}.txt'.format(i,i+1) for i in range(10,20)]
+for j in range(10):
     file=open('text files_corecte/'+lista_salvari[j],'r')
     l_meciuri=json.load(file)
     wins=0
     rezultat=0
-    suma_init=38000
+    suma_init=34000
     suma_partiala=suma_init
     money=[]
     money.append(suma_init)
@@ -35,13 +35,13 @@ for j in range(9):
         text='Profit: '+ str(round(-(suma_init-money[-1])/suma_init*100,2))+'%'
     plt.figure(figsize=(15,6))
     plt.plot(money)
-    plt.title('PL '+str(j+11)+'/'+str(j+12) +'. Maximal odd bet on every match')
+    plt.title('Bundesliga '+str(j+10)+'/'+str(j+11) +'. Maximal odd bet on every match')
     plt.xlabel('Number of matches')
     plt.ylabel('Amount of money')
 
     plt.text(0.8,0.8,'Number of winning bets: '+str(wins) +' out of '+str(len(l_meciuri))+'\n'+text,
              horizontalalignment='center',verticalalignment='center',transform=plt.gcf().transFigure)
-    plt.xticks(range(0,390,10))
+    plt.xticks(range(0,315,9))
     plt.grid(True)
-    plt.savefig('plots_pl/Plot_pl_'+str(j+11)+'-'+str(j+12)+'_maximal_odd.png')
+    plt.savefig('plots_bundesliga/maximal_odd_every_match/Plot_bundesliga_'+str(j+10)+'-'+str(j+11)+'_maximal_odd.png')
     file.close()
